@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VScode settings
+.vscode/
+._.*
+
+# resources
+/MNIST
+/online_triplet_demo
+.DS_Store
+requirements.txt

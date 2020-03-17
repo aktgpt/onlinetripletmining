@@ -1,0 +1,10 @@
+{
+    "exp_name": "online_triplet_demo",
+    "batch_size": 512,
+    "epochs_triplet": 20,
+    "epochs_classifier": 5,
+    "learning_rate_triplet": 0.00005,
+    "learning_rate_classify": 0.001,
+    "triplet_margin": 10,
+    "triplet_sampling_strategy": "random_sh"
+}
