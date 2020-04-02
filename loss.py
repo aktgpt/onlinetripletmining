@@ -37,21 +37,19 @@ class NegativeTripletSelector:
         unique_labels, counts = torch.unique(labels, return_counts=True)
         triplets_indices = [[] for i in range(3)]
         for i, label in enumerate(unique_labels):
-            if label > 0:
-                label_mask = labels == label
-                label_indices = torch.where(label_mask)[0]
-                if label_indices.shape[0] < 2:
-                    continue
-                negative_indices = torch.where(torch.logical_not(label_mask))[0]
-                triplet_label_pairs = self.get_one_one_triplets(
-                    label_indices, negative_indices, distance_matrix,
-                )
+            label_mask = labels == label
+            label_indices = torch.where(label_mask)[0]
+            if label_indices.shape[0] < 2:
+                continue
+            negative_indices = torch.where(torch.logical_not(label_mask))[0]
+            triplet_label_pairs = self.get_one_one_triplets(
+                label_indices, negative_indices, distance_matrix,
+            )
 
-                triplets_indices[0].extend(triplet_label_pairs[0])
-                triplets_indices[1].extend(triplet_label_pairs[1])
-                triplets_indices[2].extend(triplet_label_pairs[2])
-            else:
-                pass
+            triplets_indices[0].extend(triplet_label_pairs[0])
+            triplets_indices[1].extend(triplet_label_pairs[1])
+            triplets_indices[2].extend(triplet_label_pairs[2])
+
         return triplets_indices
 
     def get_one_one_triplets(self, pos_labels, negative_indices, dist_mat):
